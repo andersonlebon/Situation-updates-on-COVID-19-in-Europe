@@ -1,4 +1,4 @@
-// import propTypes from 'prop-types';
+import propTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TopHeader from '../common/topHeader';
@@ -20,8 +20,8 @@ const FilterByCont = ({ history }) => (
   </section>
 );
 
-// FilterByCont.propTypes = {
-//   history: propTypes.arrayOf(propTypes.shape({})).isRequired,
-// };
+FilterByCont.propTypes = {
+  history: propTypes.shape({}).isRequired,
+};
 
 export default FilterByCont;

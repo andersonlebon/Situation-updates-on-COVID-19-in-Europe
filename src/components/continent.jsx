@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import propTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
