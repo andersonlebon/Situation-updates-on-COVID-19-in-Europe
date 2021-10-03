@@ -1,4 +1,4 @@
-// import propTypes from 'prop-types';
+import propTypes from 'prop-types';
 import React from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MdKeyboardVoice, MdSettings } from 'react-icons/md';
@@ -35,9 +35,9 @@ const TopHeader = ({ text, history }) => {
   );
 };
 
-// TopHeader.propTypes = {
-//   text: propTypes.string.isRequired,
-//   history: propTypes.arrayOf(propTypes.shape({})).isRequired,
-// };
+TopHeader.propTypes = {
+  text: propTypes.string.isRequired,
+  history: propTypes.shape({ push: propTypes.func }).isRequired,
+};
 
 export default TopHeader;
