@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,400&display=swap");
 .top-bar {
-  background-color: #cdb947c7;
+  background-color: #005b96;
   position: fixed;
   width: 100%;
   top: 0;
@@ -31,7 +31,7 @@
 }
 
 .f-continent li {
-  background-color: #cd4776ea;
+  background-color: #005a96e8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,7 +41,7 @@
 }
 
 .f-continent li:hover {
-  background-color: #cd4776bb;
+  background-color: #005a96ab;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -96,7 +96,7 @@
 }
 
 .acontinent:nth-child(4n + 2) .bg, .acontinent:nth-child(4n + 3) .bg {
-  background-color: #dddf4e;
+  background-color: #005b96;
   opacity: 0.4;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .continent-country, .contry-container {
-  background: #cd4776c7;
+  background: #3880afb4;
 }
 
 .text-small {
@@ -130,7 +130,7 @@ section h3 {
 }
 
 .country-cities {
-  background: #b93f6ae3;
+  background: #005a967e;
 }
 
 .countryList {
@@ -183,7 +183,7 @@ section h3 {
 }
 
 body {
-  background-color: #e9c653 !important;
+  background-color: #005b96 !important;
   font-family: 'Roboto', sans-serif !important;
 }
 
