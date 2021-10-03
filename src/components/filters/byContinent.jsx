@@ -20,8 +20,8 @@ const FilterByCont = ({ history }) => (
   </section>
 );
 
-FilterByCont.propTypes = {
-  history: propTypes.arrayOf(propTypes.shape({})).isRequired,
-};
+// FilterByCont.propTypes = {
+//   history: propTypes.arrayOf(propTypes.shape({})).isRequired,
+// };
 
 export default FilterByCont;
