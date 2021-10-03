@@ -1,0 +1,23 @@
+.top-bar {
+  background-color: $hover-color;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 10px;
+  color: $text-color;
+  z-index: 999;
+
+  // button {
+  //   color: $text-color;
+  // }
+
+  h2 {
+    color: $text-color-small;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  div {
+    gap: 10px;
+  }
+}

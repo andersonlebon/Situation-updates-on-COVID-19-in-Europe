@@ -1,0 +1,54 @@
+.contry-container {
+  padding: 60px 0;
+  height: 100vh;
+
+  @extend .continent-country;
+}
+
+.country-title {
+  h2 {
+    text-align: end;
+    font-size: 38px;
+    font-weight: 999;
+  }
+}
+
+.country-cities {
+  background: #b93f6ae3;
+}
+
+.countryList {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .acountry {
+    height: 100px;
+
+    h2 {
+      font-size: 18px;
+      padding: 20px 10px;
+      font-weight: 999;
+      width: 50%;
+    }
+
+    &:nth-child(2n + 1) {
+      background-color: #3130302d;
+      z-index: 2;
+    }
+  }
+}
+
+.country-name {
+  gap: 10px;
+}
+
+.country-img {
+  opacity: 0.4;
+}
+
+.tost {
+  font-size: 15px;
+  font-weight: 100;
+  font-style: italic;
+  padding: 10px;
+}
