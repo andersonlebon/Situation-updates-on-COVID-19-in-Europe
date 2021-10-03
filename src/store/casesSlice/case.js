@@ -3,16 +3,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = 'https://covid-api.mmediagroup.fr/v1/cases/';
+const baseURL =
+  'https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/';
 
 export const getCases = async (dispatch, continent, action) => {
   try {
-    const { data } = await axios.get(`${baseURL}?continent=${continent}`);
-    const countryValues = Object.values(data).map((country) => country.All);
-    const countries = countryValues.map((acase) => ({
-      confirmed: acase.confirmed,
-      country: acase.country,
-    }));
+    const { data } = await axios.get(`${baseURL}`);
+
     return dispatch(action(countries));
   } catch (error) {
     return dispatch({ error });
