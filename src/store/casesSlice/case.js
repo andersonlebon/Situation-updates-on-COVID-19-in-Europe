@@ -9,22 +9,32 @@ const baseURL =
 export const getAllData = async (dispatch, continent, action) => {
   try {
     const { data } = await axios.get(`${baseURL}`);
-    return dispatch(action(data.records));
+    const sentData = [];
+
+    data.records.forEach((element) => {
+      const newData = {
+        country: element.countriesAndTerritories,
+        cases: '',
+        deaths: [],
+        totalDeath: [],
+        vaccinated: [],
+      };
+      // newData.cases.push({ cases: element.cases, date: element.dateRep });
+      // newData.deaths.push();
+
+      sentData.push(newData);
+    });
+    return dispatch(action(sentData));
   } catch (error) {
-    return dispatch({ error });
+    return dispatch(action(error));
   }
 };
 
 const slice = createSlice({
   name: 'cases',
-  initialState: {
-    cases: [],
-    death: [],
-    totalDeath: [],
-    vaccinated: [],
-  },
+  initialState: [],
   reducers: {
-    getCasesByContinent: (state, action) => {
+    getAllDataSuccess: (state, action) => {
       state.cases = [...action.payload];
     },
     getCasesByContry: (state, action) => {
