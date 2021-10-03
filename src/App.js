@@ -1,20 +1,40 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import FilterByCOn from './components/filters/byContinent';
+import Continent from './components/continent';
 import './sass/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/header';
-import Home from './components/home';
-import { getAllData, getAllDataSuccess } from './store/casesSlice/case';
+import Country from './components/country';
 
 function App() {
+  const { casesReducer } = useSelector((state) => state);
+
   return (
     <BrowserRouter>
-      <Header />
       <main>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={FilterByCOn} />
+          <Route
+            path="/continent/:continent"
+            render={({ match, history }) => (
+              <Continent
+                history={history}
+                match={match}
+                cases={casesReducer.cases}
+              />
+            )}
+          />
+          <Route
+            path="/:continent/:country"
+            render={({ match, history }) => (
+              <Country
+                history={history}
+                match={match}
+                cases={casesReducer.currentCountry}
+              />
+            )}
+          />
         </Switch>
       </main>
     </BrowserRouter>

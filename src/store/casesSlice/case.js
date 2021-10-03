@@ -3,49 +3,56 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL =
-  'https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/';
+const baseURL = 'https://covid-api.mmediagroup.fr/v1/cases/';
 
-export const getAllData = async (dispatch, action) => {
+export const getCases = async (dispatch, continent, action) => {
   try {
-    const { data } = await axios.get(
-      'https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/'
-    );
-    const sentData = [];
-    console.log(data);
-
-    data.records.forEach((element) => {
-      const newData = {
-        country: element.countriesAndTerritories,
-        cases: '',
-        deaths: [],
-        totalDeath: [],
-        vaccinated: [],
-      };
-      // newData.cases.push({ cases: element.cases, date: element.dateRep });
-      // newData.deaths.push();
-
-      sentData.push(newData);
-    });
-    return dispatch(action(sentData));
+    const { data } = await axios.get(`${baseURL}?continent=${continent}`);
+    const countryValues = Object.values(data).map((country) => country.All);
+    const countries = countryValues.map((acase) => ({
+      confirmed: acase.confirmed,
+      country: acase.country,
+    }));
+    return dispatch(action(countries));
   } catch (error) {
-    return dispatch({ type: 'erroreee', payload: error.message });
+    return dispatch({ error });
   }
 };
+export const getCountryCases = async (dispatch, country, action) => {
+  try {
+    const { data } = await axios.get(`${baseURL}?country=${country}`);
+    const twons = [];
 
+    for (const key in data) {
+      if (key !== 'All') {
+        const newTwon = {
+          name: key,
+          confirmed: data[key].confirmed,
+        };
+        twons.push(newTwon);
+      }
+    }
+    return dispatch(action({ twons, All: data.All }));
+  } catch (error) {
+    return dispatch(action({ error }));
+  }
+};
 const slice = createSlice({
-  name: 'situationCOVID',
-  initialState: [],
+  name: 'cases',
+  initialState: {
+    cases: [],
+    currentCountry: { All: {}, twons: [] },
+  },
   reducers: {
-    getAllDataSuccess: (state, action) => {
-      state = [...action.payload];
+    getCasesByContinent: (state, action) => {
+      state.cases = [...action.payload];
     },
-    getAllDataFailed: (state, action) => {
-      return state;
+    getCasesByContry: (state, action) => {
+      state.currentCountry = action.payload;
     },
   },
 });
 
-export const { getAllDataSuccess, getAllDataFailed } = slice.actions;
+export const { getCasesByContinent, getCasesByContry } = slice.actions;
 
 export default slice.reducer;
