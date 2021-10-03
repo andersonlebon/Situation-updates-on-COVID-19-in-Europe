@@ -9,8 +9,7 @@ const baseURL =
 export const getCases = async (dispatch, continent, action) => {
   try {
     const { data } = await axios.get(`${baseURL}`);
-
-    return dispatch(action(countries));
+    return dispatch(action(data.records));
   } catch (error) {
     return dispatch({ error });
   }
