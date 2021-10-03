@@ -6,10 +6,13 @@ import axios from 'axios';
 const baseURL =
   'https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/';
 
-export const getAllData = async (dispatch, continent, action) => {
+export const getAllData = async (dispatch, action) => {
   try {
-    const { data } = await axios.get(`${baseURL}`);
+    const { data } = await axios.get(
+      'https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/'
+    );
     const sentData = [];
+    console.log(data);
 
     data.records.forEach((element) => {
       const newData = {
@@ -26,23 +29,23 @@ export const getAllData = async (dispatch, continent, action) => {
     });
     return dispatch(action(sentData));
   } catch (error) {
-    return dispatch(action(error));
+    return dispatch({ type: 'erroreee', payload: error.message });
   }
 };
 
 const slice = createSlice({
-  name: 'cases',
+  name: 'situationCOVID',
   initialState: [],
   reducers: {
     getAllDataSuccess: (state, action) => {
-      state.cases = [...action.payload];
+      state = [...action.payload];
     },
-    getCasesByContry: (state, action) => {
-      state.currentCountry = action.payload;
+    getAllDataFailed: (state, action) => {
+      return state;
     },
   },
 });
 
-export const { getCasesByContinent, getCasesByContry } = slice.actions;
+export const { getAllDataSuccess, getAllDataFailed } = slice.actions;
 
 export default slice.reducer;
